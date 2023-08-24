@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(https://cdn.pixabay.com/photo/2017/05/25/15/08/jogging-2343558_1280.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            text-align: center;
+            color: #000; /* Set text color to black */
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 24px;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #000; /* Set label text color to black */
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        
+        #bmiInfo {
+            display: none;
+            text-align: left;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+        }
+        
+        #bmiCategories {
+            font-weight: bold;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Change text color to black for specific elements */
+        #userName, #userAge, #result, #bmiInfo, #bmiCategories, #bmiText {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <form id="bmiForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" required>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" required>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" required>
+
+            <button type="button" onclick="calculateBMI()">Calculate</button>
+        </form>
+
+        <h2 id="bmiText">Result:</h2>
+        <p>Name: <span id="userName"></span></p>
+        <p>Age: <span id="userAge"></span></p>
+        <p>Your BMI is: <span id="result"></span></p>
+
+        <div id="bmiInfo">
+            <h2>About BMI:</h2>
+            <p>The Body Mass Index (BMI) is a measure of body fat based on an individual's weight and height.</p>
+            <p>While it can provide a general indication of whether a person is underweight, normal weight, overweight, or obese, it has limitations and doesn't account for factors like muscle mass, bone density, and distribution of fat.</p>
+            <p>Therefore, while BMI can be a useful screening tool, it should not be the sole determinant of a person's health. Consulting with a healthcare professional is recommended for a more comprehensive assessment of one's health and fitness.</p>
+        </div>
+
+        <div id="bmiCategories">
+            <h2>BMI Categories:</h2>
+            <p>Underweight: BMI less than 18.5</p>
+            <p>Normal weight: BMI between 18.5 and 24.9</p>
+            <p>Overweight: BMI between 25 and 29.9</p>
+            <p>Obese: BMI of 30 or greater</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const name = document.getElementById('name').value;
+            const age = parseInt(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convert height to meters
+            const bmi = (weight / (height * height)).toFixed(2);
+
+            document.getElementById('userName').textContent = name;
+            document.getElementById('userAge').textContent = age;
+            document.getElementById('result').textContent = bmi;
+
+            document.getElementById('bmiInfo').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
